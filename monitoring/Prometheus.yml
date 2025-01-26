@@ -1,0 +1,4 @@
+scrape_configs:
+  - job_name: "fppr_nodes"
+    static_configs:
+      - targets: ["hive:5000", "leader-dogs:5000", "member-labrador:5000"]
