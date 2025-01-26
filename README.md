@@ -22,4 +22,18 @@ fppr-unified-system/
 
 
 
+# FPPR Unified System
 
+The **Fractal Pivot Point R.E.M. Neural Network (FPPR)** is a decentralized AI framework designed for adaptive query routing, fault tolerance, and federated learning.
+
+## Features
+- Blockchain Certification
+- Adaptive Query Routing
+- R.E.M. Memory Layers
+- Federated Learning
+- Prometheus/Grafana Monitoring
+
+## Deployment
+1. Local Deployment:
+   ```bash
+   docker-compose up --build
