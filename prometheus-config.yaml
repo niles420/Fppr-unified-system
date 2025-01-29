@@ -1,16 +1,23 @@
-global:
-  scrape_interval: 15s
-  evaluation_interval: 15s
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: monitoring
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
 
-scrape_configs:
-  - job_name: 'fppr-nodes'
-    static_configs:
-      - targets:
-          - 'fppr-hive-service.default.svc.cluster.local:5000'
-          - 'fppr-member-service.default.svc.cluster.local:5000'
-          - 'fppr-leader-dogs-service.default.svc.cluster.local:5000'
+    scrape_configs:
+      - job_name: 'fppr-nodes'
+        static_configs:
+          - targets:
+              - 'fppr-hive-service.default.svc.cluster.local:5000'
+              - 'fppr-member-service.default.svc.cluster.local:5000'
+              - 'fppr-leader-dogs-service.default.svc.cluster.local:5000'
 
-  - job_name: 'prometheus'
-    static_configs:
-      - targets:
-          - 'localhost:9091'
+      - job_name: 'prometheus'
+        static_configs:
+          - targets:
+              - 'localhost:9091'
