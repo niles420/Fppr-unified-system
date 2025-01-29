@@ -3,8 +3,6 @@ kind: Deployment
 metadata:
   name: prometheus-server
   namespace: monitoring
-  labels:
-    app: prometheus
 spec:
   replicas: 1
   selector:
@@ -16,28 +14,14 @@ spec:
         app: prometheus
     spec:
       containers:
-      - name: prometheus
-        image: prom/prometheus:latest
-        ports:
-        - containerPort: 9091
-        volumeMounts:
-        - name: config-volume
-          mountPath: /etc/prometheus
+        - name: prometheus
+          image: prom/prometheus:latest
+          ports:
+            - containerPort: 9091  # ✅ Change 9090 to 9091
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/prometheus/
       volumes:
-      - name: config-volume
-        configMap:
-          name: prometheus-config
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: prometheus-service
-  namespace: monitoring
-spec:
-  selector:
-    app: prometheus
-  ports:
-  - protocol: TCP
-    port: 9091
-    targetPort: 9090
-  type: NodePort
+        - name: config-volume
+          configMap:
+            name: prometheus-config
