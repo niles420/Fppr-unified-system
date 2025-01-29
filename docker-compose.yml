@@ -6,6 +6,8 @@ services:
       - "5000:5000"
     environment:
       - NODE_ROLE=hive
+    networks:
+      - fppr-net
 
   leader_dogs:
     build: .
@@ -14,6 +16,8 @@ services:
     environment:
       - NODE_ROLE=leader
       - CATEGORY=dogs
+    networks:
+      - fppr-net
 
   member_labrador:
     build: .
@@ -22,15 +26,37 @@ services:
     environment:
       - NODE_ROLE=member
       - CATEGORY=labrador
+    networks:
+      - fppr-net
 
   prometheus:
     image: prom/prometheus
+    container_name: prometheus
+    restart: always
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
     ports:
-      - "9091:9090"
+      - "9090:9090"
+    networks:
+      - fppr-net
 
   grafana:
     image: grafana/grafana
+    container_name: grafana
+    restart: always
     ports:
       - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - fppr-net
+    depends_on:
+      - prometheus
+
+networks:
+  fppr-net:
+
+volumes:
+  prometheus_data:
+  grafana_data:
