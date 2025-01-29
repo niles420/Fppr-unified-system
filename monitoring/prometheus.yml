@@ -1,4 +1,7 @@
+global:
+  scrape_interval: 15s
+
 scrape_configs:
-  - job_name: "fppr_nodes"
+  - job_name: "fppr-nodes"
     static_configs:
-      - targets: ["hive:5000", "leader-dogs:5000", "member-labrador:5000"]
+      - targets: ['hive:5000', 'leader_dogs:5000', 'member_labrador:5000']
