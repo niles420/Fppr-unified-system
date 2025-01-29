@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
       - name: hive
-        image: your-docker-registry/fppr-hive:latest
+        image: fppr-hive:latest  # Use locally built image
+        imagePullPolicy: IfNotPresent  # Ensure Kubernetes does not pull from an external registry
         ports:
         - containerPort: 5000
