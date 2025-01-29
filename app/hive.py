@@ -4,12 +4,12 @@ from prometheus_client import Counter, generate_latest
 
 app = Flask(__name__)
 
-# ✅ Fix: Add /health endpoint
+# ✅ Fix: Ensure /health endpoint is properly defined
 @app.route("/health", methods=["GET"])
 def health():
     return jsonify({"status": "ok", "message": "FPPR Hive is running"}), 200
 
-# ✅ Fix: Add /metrics endpoint for Prometheus
+# ✅ Fix: Ensure /metrics endpoint for Prometheus
 request_counter = Counter('http_requests_total', 'Total HTTP Requests')
 
 @app.route("/metrics", methods=["GET"])
