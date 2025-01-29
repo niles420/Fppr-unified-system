@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fppr-member
+  labels:
+    app: fppr-member
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fppr-member
+  template:
+    metadata:
+      labels:
+        app: fppr-member
+    spec:
+      containers:
+      - name: member
+        image: your-docker-registry/fppr-member:latest
+        ports:
+        - containerPort: 5000
