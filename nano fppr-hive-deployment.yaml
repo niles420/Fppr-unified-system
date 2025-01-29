@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fppr-hive
+  labels:
+    app: fppr-hive
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fppr-hive
+  template:
+    metadata:
+      labels:
+        app: fppr-hive
+    spec:
+      containers:
+      - name: hive
+        image: your-docker-registry/fppr-hive:latest
+        ports:
+        - containerPort: 5000
