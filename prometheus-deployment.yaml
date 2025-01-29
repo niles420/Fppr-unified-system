@@ -19,7 +19,7 @@ spec:
       - name: prometheus
         image: prom/prometheus:latest
         ports:
-        - containerPort: 9090
+        - containerPort: 9091
         volumeMounts:
         - name: config-volume
           mountPath: /etc/prometheus
@@ -38,6 +38,6 @@ spec:
     app: prometheus
   ports:
   - protocol: TCP
-    port: 9090
+    port: 9091
     targetPort: 9090
   type: NodePort
