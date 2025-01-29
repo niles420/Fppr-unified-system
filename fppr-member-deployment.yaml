@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
       - name: member
-        image: your-docker-registry/fppr-member:latest
+        image: fppr-member:latest
+        imagePullPolicy: IfNotPresent  # Ensure Kubernetes does not pull from an external registry
         ports:
         - containerPort: 5000
